@@ -88,3 +88,11 @@ Route::get('/model', function(){
 
     return \App\Models\User::all();
 });
+
+Route::prefix('admin')->namespace('App\\Http\\Controllers\\Admin\\')->group(function(){
+    Route::prefix('stores')->group(function(){
+        Route::get('/', 'StoreController@index');
+        Route::get('/create', 'StoreController@create');
+        Route::post('/store', 'StoreController@store');
+    });
+});
