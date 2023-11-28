@@ -21,6 +21,11 @@ class UsersTableSeeder extends Seeder
 //                'remember_token' => 'kkkj',
 //            ]
 //        );
-        \App\Models\User::factory()->count(40)->create();
+        \App\Models\User::factory()->count(40)->create()->each(function($user){
+            $store = \App\Models\Store::factory()->make();
+            $user->store()->save($store);
+        });
+
+
     }
 }
